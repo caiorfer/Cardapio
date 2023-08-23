@@ -1,0 +1,51 @@
+cardapio = {
+    "Entradas": ["Bruschetta", "Carpaccio", "Salada Caprese", "Caldo Verde", "Queijo Brie"],
+    "Pratos Principais": ["Filé", "Salmao Grelhado", "Risoto de Cogumelos", "Frango a Parmegiana", "Lasanha"],
+    "Bebidas": ["Vinho Tinto", "Suco Detox", "Caipirinha", "Refrigerante", "Suco Natural", "Aguinha Mineral"],
+    "Sobremesas": ["Tiramisu", "Pudim de Leite", "Brownie com Sorvete", "Cheesecake"]
+}
+
+valores = {
+    "Bruschetta": 15, "Carpaccio": 20, "Salada Caprese": 15, "Caldo Verde": 11, "Queijo Brie": 10,
+    "Filé": 45, "Salmao Grelhado": 60, "Risoto de Cogumelos": 90, "Frango a Parmegiana": 50, "Lasanha": 50,
+    "Vinho Tinto": 80, "Suco Detox": 15, "Caipirinha": 20, "Refrigerante": 8, "Suco Natural": 14, "Aguinha Mineral": 5,
+    "Tiramisu": 20, "Pudim de Leite": 15, "Brownie com Sorvete": 30, "Cheesecake": 40
+}
+
+def exibir_cardapio(cardapio, valores):
+    print("Bem-vindo ao Restaurante!")
+    print("======== Cardápio =======")
+    for categoria, itens in cardapio.items():
+        print(f"{categoria}:")
+        for i, item in enumerate(itens, start=1):
+            print(f"{i}. {item} - R$ {valores[item]:.2f}")
+        print("-----------------------")
+
+def fazer_pedido(cardapio):
+    pedido = {}
+    for categoria, itens in cardapio.items():
+        escolha = input(f"Deseja algum dos/das {categoria.lower()}? (s/n): ")
+        if escolha.lower() == 's':
+            print(f"Opções de {categoria}:")
+            for i, item in enumerate(itens, start=1):
+                print(f"{i}. {item}")
+            opcao = int(input("Digite o número do item que deseja ou 0 para não pedir: "))
+            if 1 <= opcao <= len(itens):
+                pedido[categoria] = itens[opcao - 1]
+    return pedido
+
+def calcular_valor_total(pedido, valores):
+    valor_total = 0
+    for categoria, item in pedido.items():
+        valor_total += valores[item]
+    return valor_total
+
+exibir_cardapio(cardapio, valores)
+pedido = fazer_pedido(cardapio)
+
+print("\nResumo do Pedido:")
+for categoria, item in pedido.items():
+    print(f"- {item} ({categoria})")
+
+valor_total = calcular_valor_total(pedido, valores)
+print(f"Valor Total: R$ {valor_total:.2f}")
