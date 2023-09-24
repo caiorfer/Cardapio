@@ -1,0 +1,25 @@
+CREATE TABLE Eletronicos (
+    id_produto INT PRIMARY KEY,
+    tipo VARCHAR(50),
+    marca VARCHAR(50),
+    preco DECIMAL(10, 2));
+
+CREATE TABLE Clientes (
+    id_cliente INT PRIMARY KEY,
+    nome VARCHAR(50),
+    email VARCHAR(100),
+    telefone VARCHAR(15));
+
+CREATE TABLE Carrinho (
+    id_carrinho INT PRIMARY KEY,
+    id_cliente INT,
+    data_compra DATE,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente));
+
+CREATE TABLE ItensCarrinho (
+    id_item INT PRIMARY KEY,
+    id_carrinho INT,
+    id_produto INT,
+    quantidade INT,
+    FOREIGN KEY (id_carrinho) REFERENCES Carrinho(id_carrinho),
+    FOREIGN KEY (id_produto) REFERENCES Eletronicos(id_produto));
