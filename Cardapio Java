@@ -1,0 +1,93 @@
+package br.com.Cardapio.model;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Cardapio {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+        Map<String, List<String>> cardapio = new HashMap<>();
+        cardapio.put("Entradas", Arrays.asList("Bruschetta", "Carpaccio", "Salada Caprese", "Caldo Verde", "Queijo Brie"));
+        cardapio.put("Pratos Principais", Arrays.asList("Filé", "Salmão Grelhado", "Risoto de Cogumelos", "Frango à Parmegiana", "Lasanha"));
+        cardapio.put("Bebidas", Arrays.asList("Vinho Tinto", "Suco Detox", "Caipirinha", "Refrigerante", "Suco Natural", "Aguinha Mineral"));
+        cardapio.put("Sobremesas", Arrays.asList("Tiramisu", "Pudim de Leite", "Brownie com Sorvete", "Cheesecake"));
+
+        Map<String, Double> valores = new HashMap<>();
+        valores.put("Bruschetta", 15.0);
+        valores.put("Carpaccio", 20.0);
+
+        System.out.println("Bem-vindo ao Restaurante!");
+        System.out.println("======== Cardápio =======");
+
+        for (String categoria : cardapio.keySet()) {
+            List<String> itens = cardapio.get(categoria);
+            System.out.println(categoria + ":");
+
+            for (int i = 0; i < itens.size(); i++) {
+                String item = itens.get(i);
+                double preco = valores.get(item);
+                System.out.println((i + 1) + ". " + item + " - R$ " + preco);
+            }
+            System.out.println("-----------------------");
+        }
+
+        Map<String, String> pedido = fazerPedido(cardapio, scanner);
+        double valorTotal = calcularValorTotal(pedido, valores);
+
+        System.out.println("\nResumo do Pedido:");
+
+        for (String categoria : pedido.keySet()) {
+            String item = pedido.get(categoria);
+            System.out.println("- " + item + " (" + categoria + ")");
+        }
+
+        System.out.println("Valor Total: R$ " + String.format("%.2f", valorTotal));
+    }
+
+    private static Map<String, String> fazerPedido(Map<String, List<String>> cardapio, Scanner scanner) {
+        Map<String, String> pedido = new HashMap<>();
+
+        for (String categoria : cardapio.keySet()) {
+            System.out.print("Deseja algum dos pratos de " + categoria.toLowerCase() + "? (s/n): ");
+            String escolha = scanner.nextLine().toLowerCase();
+
+            if ("s".equals(escolha)) {
+                List<String> itens = cardapio.get(categoria);
+                System.out.println("Opções de " + categoria + ":");
+
+                for (int i = 0; i < itens.size(); i++) {
+                    String item = itens.get(i);
+                    System.out.println((i + 1) + ". " + item);
+                }
+
+                System.out.print("Digite o número do prato que deseja ou 0 para não pedir: ");
+                int opcao = Integer.parseInt(scanner.nextLine());
+
+                if (opcao >= 1 && opcao <= itens.size()) {
+                    String itemSelecionado = itens.get(opcao - 1);
+                    pedido.put(categoria, itemSelecionado);
+                }
+            }
+        }
+
+        return pedido;
+    }
+
+    private static double calcularValorTotal(Map<String, String> pedido, Map<String, Double> valores) {
+        double valorTotal = 0.0;
+
+        for (String categoria : pedido.keySet()) {
+            String item = pedido.get(categoria);
+            valorTotal += valores.get(item);
+        }
+
+        return valorTotal;
+    }
+
+}
+
