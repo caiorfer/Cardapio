@@ -23,4 +23,3 @@ CREATE TABLE ItensCarrinho (
     quantidade INT,
     FOREIGN KEY (id_carrinho) REFERENCES Carrinho(id_carrinho),
     FOREIGN KEY (id_produto) REFERENCES Eletronicos(id_produto));
-d
