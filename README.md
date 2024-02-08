@@ -1,5 +1,5 @@
-Cardápio e Pedido em Python
-Este é um pequeno programa Python que simula um cardápio de restaurante e permite ao usuário fazer pedidos, calculando o valor total do pedido.
+Cardápio e Pedido Full stack
+Este é um pequeno programa que simula um cardápio de restaurante e permite ao usuário fazer pedidos, calculando o valor total do pedido.
 
 *Funcionalidades*
 
