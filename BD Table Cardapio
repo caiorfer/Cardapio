@@ -1,2 +1,5 @@
 CREATE TABLE menu (
   category VARCHAR(255),
+  item VARCHAR(255),
+  price DECIMAL(10, 2)
+);
