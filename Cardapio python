@@ -49,6 +49,3 @@ for categoria, item in pedido.items():
 
 valor_total = calcular_valor_total(pedido, valores)
 print(f"Valor Total: R$ {valor_total:.2f}")
-
-valor_total = calcular_valor_total(pedido, valores)
-print(f"Valor Total: R$ {valor_total:.2f}")
