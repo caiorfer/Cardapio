@@ -3,3 +3,7 @@ CREATE TABLE menu (
   item VARCHAR(255),
   price DECIMAL(10, 2)
 );
+INSERT INTO menu (category, item, price)
+VALUES
+  ('Entradas', 'Bruschetta', 15),
+  ('Entradas', 'Carpaccio', 20),
