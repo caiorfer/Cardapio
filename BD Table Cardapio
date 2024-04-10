@@ -1,9 +1,29 @@
-CREATE TABLE menu (
-  category VARCHAR(255),
-  item VARCHAR(255),
-  price DECIMAL(10, 2)
+CREATE TABLE cardapio (
+  categoria VARCHAR(255) NOT NULL,
+  item VARCHAR(255) NOT NULL,
+  preco NUMERIC(10, 2) NOT NULL,
+  PRIMARY KEY (categoria, item)
 );
-INSERT INTO menu (category, item, price)
+
+INSERT INTO cardapio (categoria, item, preco)
 VALUES
-  ('Entradas', 'Bruschetta', 15),
-  ('Entradas', 'Carpaccio', 20),
+  ('Entradas', 'Bruschetta', 15.00),
+  ('Entradas', 'Carpaccio', 20.00),
+  ('Entradas', 'Salada Caprese', 15.00),
+  ('Entradas', 'Caldo Verde', 11.00),
+  ('Entradas', 'Queijo Brie', 10.00),
+  ('Pratos Principais', 'Filé', 45.00),
+  ('Pratos Principais', 'Salmao Grelhado', 60.00),
+  ('Pratos Principais', 'Risoto de Cogumelos', 90.00),
+  ('Pratos Principais', 'Frango a Parmegiana', 50.00),
+  ('Pratos Principais', 'Lasanha', 50.00),
+  ('Bebidas', 'Vinho Tinto', 80.00),
+  ('Bebidas', 'Suco Detox', 15.00),
+  ('Bebidas', 'Caipirinha', 20.00),
+  ('Bebidas', 'Refrigerante', 8.00),
+  ('Bebidas', 'Suco Natural', 14.00),
+  ('Bebidas', 'Aguinha Mineral', 5.00),
+  ('Sobremesas', 'Tiramisu', 20.00),
+  ('Sobremesas', 'Pudim de Leite', 15.00),
+  ('Sobremesas', 'Brownie com Sorvete', 30.00),
+  ('Sobremesas', 'Cheesecake', 40.00);
